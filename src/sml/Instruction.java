@@ -2,6 +2,7 @@ package sml;
 
 
 // TODO: write a JavaDoc for the class
+// Abstract class of Instruction which is inherited by other classes to create specific instructions.
 
 import java.util.Objects;
 
