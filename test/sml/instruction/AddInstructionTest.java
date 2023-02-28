@@ -50,6 +50,6 @@ class AddInstructionTest {
   void equalsTest() {
     AddInstruction a = new AddInstruction(null,EAX,EBX);
     AddInstruction b = new AddInstruction(null,EAX,EBX);
-    Assertions.assertTrue(a.equals(b));
+    Assertions.assertTrue(b.equals(a));
   }
 }

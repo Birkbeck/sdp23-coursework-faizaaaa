@@ -35,8 +35,27 @@ public class AddInstruction extends Instruction {
 		return getLabelString() + getOpcode() + " " + result + " " + source;
 	}
 
+	@Override
 	public boolean equals(Instruction i) {
-		return false;
+		if(i.getOpcode().equals(this.opcode)) {
+			AddInstruction b = (AddInstruction) i;
+
+			if(this.label!=null&&i.getLabel()!=null)
+			{
+
+				return this.label.equals(i.getLabel())
+						&&this.result.equals(((AddInstruction) i).result)
+						&&this.source.equals(((AddInstruction) i).source);
+
+			}
+			else if(this.label==null&&i.getLabel()==null){
+
+					return this.result.equals(((AddInstruction) i).result)
+							&&this.source.equals(((AddInstruction) i).source);
+				}
+			return false;
+			}
+		else {return false;}
 	}
 
 	public int hashCode() {
