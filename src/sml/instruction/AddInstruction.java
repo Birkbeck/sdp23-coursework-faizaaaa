@@ -34,4 +34,12 @@ public class AddInstruction extends Instruction {
 	public String toString() {
 		return getLabelString() + getOpcode() + " " + result + " " + source;
 	}
+
+	public boolean equals(Instruction i) {
+		return false;
+	}
+
+	public int hashCode() {
+		return 0;
+	}
 }
