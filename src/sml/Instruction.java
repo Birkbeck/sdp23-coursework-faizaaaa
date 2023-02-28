@@ -3,6 +3,8 @@ package sml;
 
 // TODO: write a JavaDoc for the class
 
+import java.util.Objects;
+
 /**
  * Represents an abstract instruction.
  *
@@ -59,6 +61,8 @@ public abstract class Instruction {
 	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
 	public boolean equals() {return true;};
 
-	//public abstract int hashCode();
+	public int hashCode() {
+		return Objects.hash(label,opcode);
+	}
 
 }
