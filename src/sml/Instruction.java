@@ -1,5 +1,6 @@
 package sml;
 
+
 // TODO: write a JavaDoc for the class
 
 /**
@@ -11,6 +12,7 @@ public abstract class Instruction {
 	protected final String label;
 	protected final String opcode;
 
+	protected RegisterName result;
 	/**
 	 * Constructor: an instruction with a label and an opcode
 	 * (opcode must be an operation of the language)
@@ -18,9 +20,10 @@ public abstract class Instruction {
 	 * @param label optional label (can be null)
 	 * @param opcode operation name
 	 */
-	public Instruction(String label, String opcode) {
+	public Instruction(String label, String opcode, RegisterName result) {
 		this.label = label;
 		this.opcode = opcode;
+		this.result;
 	}
 
 	public String getLabel() {
@@ -54,8 +57,8 @@ public abstract class Instruction {
 	public abstract String toString();
 
 	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
-	public abstract boolean equals();
+	public boolean equals() {return true;};
 
-	public abstract int hashCode();
+	//public abstract int hashCode();
 
 }
