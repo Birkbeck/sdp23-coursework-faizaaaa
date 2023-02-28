@@ -51,5 +51,10 @@ class AddInstructionTest {
     AddInstruction a = new AddInstruction(null,EAX,EBX);
     AddInstruction b = new AddInstruction(null,EAX,EBX);
     Assertions.assertTrue(b.equals(a));
+
+    AddInstruction c = new AddInstruction(null,EBP,EBX);
+    AddInstruction d = new AddInstruction(null,EAX,EBX);
+    Assertions.assertFalse(c.equals(d));
+    // add in more tests here once created other classes
   }
 }
