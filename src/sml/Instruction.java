@@ -23,7 +23,7 @@ public abstract class Instruction {
 	public Instruction(String label, String opcode, RegisterName result) {
 		this.label = label;
 		this.opcode = opcode;
-		this.result;
+		this.result = result;
 	}
 
 	public String getLabel() {
