@@ -33,7 +33,6 @@ public class JnzInstructionTest {
     void executeValid() {
         registers.set(EAX, 30);
         Instruction instruction = new JnzInstruction(null, EAX, "f3");
-        instruction.execute(machine);
         Assertions.assertNotEquals(-1, instruction.execute(machine));
     }
 
@@ -41,7 +40,6 @@ public class JnzInstructionTest {
     void executeValidTwo() {
         registers.set(EAX, 0);
         Instruction instruction = new JnzInstruction(null, EAX, "f3");
-        instruction.execute(machine);
         Assertions.assertEquals(-1, instruction.execute(machine));
 
     }
