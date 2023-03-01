@@ -19,7 +19,7 @@ amongst other skills.
 
 ## Details
 
-**Name**: Faizaa
+**Name**: Faizaa Fazal
 
 **Your userid**: ffazal01
 
