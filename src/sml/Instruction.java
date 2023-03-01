@@ -56,6 +56,7 @@ public abstract class Instruction {
 
 	// TODO: What does abstract in the declaration below mean?
 	//       (Write a short explanation.)
+	// It shows that it is a method that does not have it's implementation.
 	@Override
 	public abstract String toString();
 

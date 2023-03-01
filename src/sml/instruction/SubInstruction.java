@@ -14,12 +14,11 @@ public class SubInstruction extends Instruction {
      * (opcode must be an operation of the language)
      *
      * @param label  optional label (can be null)
-     * @param opcode operation name
      * @param result
      * @param source
      */
-    public SubInstruction(String label, String opcode, RegisterName result, RegisterName source) {
-        super(label, opcode);
+    public SubInstruction(String label, RegisterName result, RegisterName source) {
+        super(label, OP_CODE);
         this.result = result;
         this.source = source;
     }
