@@ -49,12 +49,23 @@ public class DivInstructionTest {
 
     @Test
     void equalsTest() {
+        DivInstruction a = new DivInstruction(null,EAX,EBX);
+        DivInstruction b = new DivInstruction(null,EAX,EBX);
+        Assertions.assertTrue(b.equals(a));
 
+        DivInstruction c = new DivInstruction(null,EBP,EBX);
+        DivInstruction d = new DivInstruction(null,EAX,EBX);
+        Assertions.assertFalse(c.equals(d));
     }
 
     @Test
     void hashcodeTest() {
+        DivInstruction a = new DivInstruction(null,EAX,EBX);
+        DivInstruction b = new DivInstruction(null,EAX,EBX);
+        Assertions.assertEquals(a.hashCode(),b.hashCode());
 
-
+        DivInstruction c = new DivInstruction("f2",EAX,EBX);
+        DivInstruction d = new DivInstruction(null,EAX,EBX);
+        Assertions.assertNotEquals(c.hashCode(),d.hashCode());
     }
 }

@@ -38,7 +38,25 @@ public class DivInstruction extends Instruction {
 
     @Override
     public boolean equals(Instruction i) {
-        return false;
+        if(i.getOpcode().equals(this.opcode)) {
+            DivInstruction b = (DivInstruction) i;
+
+            if(this.label!=null&&i.getLabel()!=null)
+            {
+
+                return this.label.equals(i.getLabel())
+                        &&this.result.equals(((DivInstruction) i).result)
+                        &&this.source.equals(((DivInstruction) i).source);
+
+            }
+            else if(this.label==null&&i.getLabel()==null){
+
+                return this.result.equals(((DivInstruction) i).result)
+                        &&this.source.equals(((DivInstruction) i).source);
+            }
+            return false;
+        }
+        else {return false;}
     }
 
     @Override
