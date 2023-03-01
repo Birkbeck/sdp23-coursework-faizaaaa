@@ -31,16 +31,20 @@ public class DivInstructionTest {
 
     @Test
     void executeValid() {
-        registers.set(EAX, 5);
-        registers.set(EBX, 6);
+        registers.set(EAX, 30);
+        registers.set(EBX, 5);
         Instruction instruction = new DivInstruction(null, EAX, EBX);
         instruction.execute(machine);
-        Assertions.assertEquals(30, machine.getRegisters().get(EAX));
+        Assertions.assertEquals(6, machine.getRegisters().get(EAX));
     }
 
     @Test
     void executeValidTwo() {
-
+        registers.set(EAX, 40);
+        registers.set(EBX, 10);
+        Instruction instruction = new DivInstruction(null, EAX, EBX);
+        instruction.execute(machine);
+        Assertions.assertEquals(4, machine.getRegisters().get(EAX));
     }
 
     @Test
