@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 public class DivInstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
@@ -61,6 +63,6 @@ public class DivInstruction extends Instruction {
 
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(result,source,opcode,label);
     }
 }
