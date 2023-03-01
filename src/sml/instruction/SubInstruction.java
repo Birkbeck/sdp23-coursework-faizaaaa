@@ -33,7 +33,7 @@ public class SubInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return null;
+        return getLabelString() + getOpcode() + " " + result + " " + source;
     }
 
     @Override
