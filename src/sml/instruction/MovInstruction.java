@@ -34,7 +34,7 @@ public class MovInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return null;
+        return getLabelString() + getOpcode() + " " + result + " " + Integer.toString(input);
     }
 
     @Override

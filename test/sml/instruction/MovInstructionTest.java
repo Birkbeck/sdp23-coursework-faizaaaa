@@ -39,11 +39,21 @@ public class MovInstructionTest {
 
     @Test
     void executeValidTwo() {
+        Instruction instruction = new MovInstruction(null, EBP, 123);
+        instruction.execute(machine);
+        Assertions.assertEquals(123, machine.getRegisters().get(EBP));
 
     }
 
     @Test
     void equalsTest() {
+        MovInstruction a = new MovInstruction(null,EAX,1);
+        MovInstruction b = new MovInstruction(null,EAX,1);
+        Assertions.assertTrue(b.equals(a));
+
+        MovInstruction c = new MovInstruction(null,EBP,3);
+        MovInstruction d = new MovInstruction(null,EAX,2);
+        Assertions.assertFalse(c.equals(d));
 
     }
 
