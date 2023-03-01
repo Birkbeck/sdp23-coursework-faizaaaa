@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 public class SubInstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
@@ -38,11 +40,29 @@ public class SubInstruction extends Instruction {
 
     @Override
     public boolean equals(Instruction i) {
-        return false;
+        if(i.getOpcode().equals(this.opcode)) {
+            SubInstruction b = (SubInstruction) i;
+
+            if(this.label!=null&&i.getLabel()!=null)
+            {
+
+                return this.label.equals(i.getLabel())
+                        &&this.result.equals(((SubInstruction) i).result)
+                        &&this.source.equals(((SubInstruction) i).source);
+
+            }
+            else if(this.label==null&&i.getLabel()==null){
+
+                return this.result.equals(((SubInstruction) i).result)
+                        &&this.source.equals(((SubInstruction) i).source);
+            }
+            return false;
+        }
+        else {return false;}
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(result,source,opcode,label);
     }
 }

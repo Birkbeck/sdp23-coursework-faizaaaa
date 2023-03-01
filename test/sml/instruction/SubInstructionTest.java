@@ -50,12 +50,20 @@ public class SubInstructionTest {
 
     @Test
     void equalsTest() {
+        SubInstruction a = new SubInstruction(null,EAX,EBX);
+        SubInstruction b = new SubInstruction(null,EAX,EBX);
+        Assertions.assertTrue(b.equals(a));
 
+        SubInstruction c = new SubInstruction(null,EBP,EBX);
+        SubInstruction d = new SubInstruction(null,EAX,EBX);
+        Assertions.assertFalse(c.equals(d));
     }
 
     @Test
     void hashcodeTest() {
-
+        SubInstruction a = new SubInstruction(null,EAX,EBX);
+        SubInstruction b = new SubInstruction(null,EAX,EBX);
+        Assertions.assertEquals(a.hashCode(),b.hashCode());
 
     }
 }
