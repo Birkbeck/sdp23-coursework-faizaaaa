@@ -7,6 +7,7 @@ import sml.RegisterName;
 import java.util.Objects;
 
 // TODO: write a JavaDoc for the class
+// Java AddInstruction class, to be used with Machine class. Helps interpret the sml instructions for add.
 
 /**
  * @author
