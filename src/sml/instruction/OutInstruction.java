@@ -31,7 +31,23 @@ public class OutInstruction extends Instruction {
 
     @Override
     public boolean equals(Instruction i) {
-        return false;
+        if(i.getOpcode().equals(this.opcode)) {
+            OutInstruction b = (OutInstruction) i;
+
+            if(this.label!=null&&i.getLabel()!=null)
+            {
+
+                return this.label.equals(i.getLabel())
+                        &&this.source.equals(((OutInstruction) i).source);
+
+            }
+            else if(this.label==null&&i.getLabel()==null){
+
+                return this.source.equals(((OutInstruction) i).source);
+            }
+            return false;
+        }
+        else {return false;}
     }
 
     @Override

@@ -56,11 +56,24 @@ public class OutInstructionTest {
 
     @Test
     void equalsTest() {
+        OutInstruction a = new OutInstruction(null,EAX);
+        OutInstruction b = new OutInstruction(null,EAX);
+        Assertions.assertTrue(b.equals(a));
 
+        OutInstruction c = new OutInstruction(null,EBP);
+        OutInstruction d = new OutInstruction(null,EAX);
+        Assertions.assertFalse(c.equals(d));
     }
 
     @Test
     void hashcodeTest() {
+        OutInstruction a = new OutInstruction(null,EAX);
+        OutInstruction b = new OutInstruction(null,EAX);
+        Assertions.assertEquals(a.hashCode(),b.hashCode());
+
+        OutInstruction c = new OutInstruction("f2",EAX);
+        OutInstruction d = new OutInstruction(null,EAX);
+        Assertions.assertNotEquals(c.hashCode(),d.hashCode());
 
     }
 }
