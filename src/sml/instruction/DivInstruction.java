@@ -6,6 +6,8 @@ import sml.RegisterName;
 
 import java.util.Objects;
 
+// DivInstruction class, to be used with Machine class. Helps interpret the sml instructions for div.
+
 public class DivInstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
