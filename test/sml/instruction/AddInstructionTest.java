@@ -57,4 +57,11 @@ class AddInstructionTest {
     Assertions.assertFalse(c.equals(d));
     // add in more tests here once created other classes
   }
+
+  @Test
+  void hashcodeTest() {
+    AddInstruction a = new AddInstruction(null,EAX,EBX);
+    AddInstruction b = new AddInstruction(null,EAX,EBX);
+    Assertions.assertEquals(a.hashCode(),b.hashCode());
+  }
 }

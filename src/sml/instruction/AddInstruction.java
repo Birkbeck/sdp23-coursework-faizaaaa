@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 // TODO: write a JavaDoc for the class
 
 /**
@@ -59,6 +61,6 @@ public class AddInstruction extends Instruction {
 	}
 
 	public int hashCode() {
-		return 0;
+		return Objects.hash(result,source,opcode,label);
 	}
 }
