@@ -11,4 +11,57 @@ import sml.Registers;
 
 import static sml.Registers.Register.*;
 public class MulInstructionTest {
+
+    private Machine machine;
+    private Registers registers;
+
+    @BeforeEach
+    void setUp() {
+        machine = new Machine(new Registers());
+        registers = machine.getRegisters();
+        //...
+    }
+
+    @AfterEach
+    void tearDown() {
+        machine = null;
+        registers = null;
+    }
+
+    @Test
+    void executeValid() {
+        registers.set(EAX, 5);
+        registers.set(EBX, 6);
+        Instruction instruction = new MulInstruction(null, EAX, EBX);
+        instruction.execute(machine);
+        Assertions.assertEquals(30, machine.getRegisters().get(EAX));
+    }
+
+    @Test
+    void executeValidTwo() {
+        registers.set(EAX, -5);
+        registers.set(EBX, 6);
+        Instruction instruction = new MulInstruction(null, EAX, EBX);
+        instruction.execute(machine);
+        Assertions.assertEquals(-30, machine.getRegisters().get(EAX));
+    }
+
+    @Test
+    void equalsTest() {
+        MulInstruction a = new MulInstruction(null,EAX,EBX);
+        MulInstruction b = new MulInstruction(null,EAX,EBX);
+        Assertions.assertTrue(b.equals(a));
+
+        MulInstruction c = new MulInstruction(null,EBP,EBX);
+        MulInstruction d = new MulInstruction(null,EAX,EBX);
+        Assertions.assertFalse(c.equals(d));
+    }
+
+    @Test
+    void hashcodeTest() {
+        MulInstruction a = new MulInstruction(null,EAX,EBX);
+        MulInstruction b = new MulInstruction(null,EAX,EBX);
+        Assertions.assertEquals(a.hashCode(),b.hashCode());
+
+    }
 }

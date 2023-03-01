@@ -2,17 +2,28 @@ package sml.instruction;
 
 import sml.Instruction;
 import sml.Machine;
+import sml.RegisterName;
+
+// MulInstruction class, to be used with Machine class. Helps interpret the sml instructions for mul.
 
 public class MulInstruction extends Instruction {
+
+    private final RegisterName result;
+    private final RegisterName source;
+
+    public static final String OP_CODE = "mul";
     /**
      * Constructor: an instruction with a label and an opcode
      * (opcode must be an operation of the language)
      *
      * @param label  optional label (can be null)
-     * @param opcode operation name
+     * @param result
+     * @param source
      */
-    public MulInstruction(String label, String opcode) {
-        super(label, opcode);
+    public MulInstruction(String label, RegisterName result, RegisterName source) {
+        super(label, OP_CODE);
+        this.result = result;
+        this.source = source;
     }
 
     @Override
