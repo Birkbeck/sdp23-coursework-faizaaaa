@@ -6,6 +6,8 @@ import sml.RegisterName;
 
 import java.util.Objects;
 
+// SubInstruction class, to be used with Machine class. Helps interpret the sml instructions for sub.
+
 public class SubInstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
