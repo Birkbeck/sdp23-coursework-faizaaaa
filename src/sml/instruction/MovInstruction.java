@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 // MovInstruction class, to be used with Machine class. Helps interpret the sml instructions for mov.
 
 public class MovInstruction extends Instruction {
@@ -39,11 +41,29 @@ public class MovInstruction extends Instruction {
 
     @Override
     public boolean equals(Instruction i) {
-        return false;
+        if(i.getOpcode().equals(this.opcode)) {
+            MovInstruction b = (MovInstruction) i;
+
+            if(this.label!=null&&i.getLabel()!=null)
+            {
+
+                return this.label.equals(i.getLabel())
+                        &&this.result.equals(((MovInstruction) i).result)
+                        &&this.input==((MovInstruction) i).input;
+
+            }
+            else if(this.label==null&&i.getLabel()==null){
+
+                return this.result.equals(((MovInstruction) i).result)
+                        &&this.input==((MovInstruction) i).input;
+            }
+            return false;
+        }
+        else {return false;}
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(result,opcode,label,input);
     }
 }

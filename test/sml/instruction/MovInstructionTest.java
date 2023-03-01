@@ -59,6 +59,13 @@ public class MovInstructionTest {
 
     @Test
     void hashcodeTest() {
+        MovInstruction a = new MovInstruction(null,EAX,7);
+        MovInstruction b = new MovInstruction(null,EAX,7);
+        Assertions.assertEquals(a.hashCode(),b.hashCode());
+
+        MovInstruction c = new MovInstruction("f2",EAX,2);
+        MovInstruction d = new MovInstruction(null,EAX,3);
+        Assertions.assertNotEquals(c.hashCode(),d.hashCode());
 
     }
 }
