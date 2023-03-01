@@ -43,11 +43,14 @@ public class OutInstructionTest {
         instruction.execute(machine);
         assertEquals("5",outputStreamCaptor.toString().trim());
 
-
     }
 
     @Test
     void executeValidTwo() {
+        registers.set(EAX, 7);
+        Instruction instruction = new OutInstruction(null, EAX);
+        instruction.execute(machine);
+        assertEquals("7",outputStreamCaptor.toString().trim());
 
     }
 
