@@ -93,8 +93,6 @@ public final class Translator {
                     int input = Integer.parseInt(s);
                     return (Instruction)
                             constructor[0].newInstance(label,Register.valueOf(r),input);
-
-
                 }
             }
             else {
