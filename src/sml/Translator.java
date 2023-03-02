@@ -68,10 +68,10 @@ public final class Translator {
             return null;
 
         String opcode = scan();
-        String className = opcode.substring(0,1).toUpperCase() + opcode.substring(1)+ "Instruction";
+        String className = "sml.instruction."+opcode.substring(0,1).toUpperCase() + opcode.substring(1)+ "Instruction";
         try {
             Class<?> instruction = Class.forName(className);
-            Constructor constructor = instruction.getConstructor();;
+            Constructor constructor = instruction.getDeclaredConstructor();
             Class[] parameterTypes = constructor.getParameterTypes();
             if (parameterTypes.length==3) {
                 if(parameterTypes[2].equals(Register.class)) {
@@ -153,7 +153,7 @@ public final class Translator {
                 System.out.println("Unknown instruction: " + opcode);
             }
         }*/
-        return null;
+//        return null;
     }
 
 
