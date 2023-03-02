@@ -5,6 +5,7 @@ import sml.Machine;
 import sml.RegisterName;
 
 import java.awt.*;
+import java.util.Objects;
 
 // JnzInstruction class, to be used with Machine class. Helps interpret the sml instructions for jnz.
 
@@ -59,6 +60,6 @@ public class JnzInstruction extends Instruction {
 
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(source,opcode,label,labelToJumpTo);
     }
 }

@@ -63,7 +63,13 @@ public class JnzInstructionTest {
 
     @Test
     void hashcodeTest() {
+        JnzInstruction a = new JnzInstruction(null,EAX,"7");
+        JnzInstruction b = new JnzInstruction(null,EAX,"7");
+        Assertions.assertEquals(a.hashCode(),b.hashCode());
 
+        JnzInstruction c = new JnzInstruction("f2",EAX,"2");
+        JnzInstruction d = new JnzInstruction(null,EAX,"3");
+        Assertions.assertNotEquals(c.hashCode(),d.hashCode());
     }
 
 }
