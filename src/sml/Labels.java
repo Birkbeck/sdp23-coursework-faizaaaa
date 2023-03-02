@@ -41,7 +41,7 @@ public final class Labels {
 		}
 		catch(NullPointerException e) {
 			System.out.println("Label does not exist. Program terminated.");
-			return 10000000;
+			return 1000000001; //Assumming the program size does not exceed this number
 		}
 
 	}
