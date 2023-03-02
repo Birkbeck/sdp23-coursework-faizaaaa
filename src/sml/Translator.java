@@ -71,46 +71,76 @@ public final class Translator {
         String className = opcode.substring(0,1).toUpperCase() + opcode.substring(1)+ "Instruction";
         try {
             Class<?> instruction = Class.forName(className);
-        } catch (ClassNotFoundException e) {
+            Constructor constructor = instruction.getConstructor();;
+            Class[] parameterTypes = constructor.getParameterTypes();
+            if (parameterTypes.length==3) {
+                if(parameterTypes[2].equals(Register.class)) {
+                    String r = scan();
+                    String s = scan();
+                    return (Instruction)
+                            constructor.newInstance(label,Register.valueOf(r),Register.valueOf(s));
+                }
+                else if(parameterTypes[2].equals(int.class)) {
+                    String r = scan();
+                    String s = scan();
+                    int input = Integer.parseInt(s);
+                    return (Instruction)
+                            constructor.newInstance(label,Register.valueOf(r),input);
+                }
+                else {
+                    String r = scan();
+                    String s = scan();
+                    return (Instruction)
+                            constructor.newInstance(label,Register.valueOf(r),s);
+
+                }
+            }
+            else {
+                String s = scan();
+                return (Instruction)
+                        constructor.newInstance(label,Register.valueOf(s));
+            }
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
             throw new RuntimeException(e);
         }
 
-        switch (opcode) {
-            case AddInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case SubInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case MulInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case DivInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case OutInstruction.OP_CODE -> {
-                String s = scan();
-                return new OutInstruction(label, Register.valueOf(s));
-            }
-            case MovInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                int input = Integer.parseInt(s);
-                return new MovInstruction(label, Register.valueOf(r), input);
-            }
-            case JnzInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new JnzInstruction(label, Register.valueOf(r), s);
-            }
+//        switch (opcode) {
+//            case AddInstruction.OP_CODE -> {
+//                String r = scan();
+//                String s = scan();
+//                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+//            }
+//            case SubInstruction.OP_CODE -> {
+//                String r = scan();
+//                String s = scan();
+//                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
+//            }
+//            case MulInstruction.OP_CODE -> {
+//                String r = scan();
+//                String s = scan();
+//                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
+//            }
+//            case DivInstruction.OP_CODE -> {
+//                String r = scan();
+//                String s = scan();
+//                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
+//            }
+//            case OutInstruction.OP_CODE -> {
+//                String s = scan();
+//                return new OutInstruction(label, Register.valueOf(s));
+//            }
+//            case MovInstruction.OP_CODE -> {
+//                String r = scan();
+//                String s = scan();
+//                int input = Integer.parseInt(s);
+//                return new MovInstruction(label, Register.valueOf(r), input);
+//            }
+//            case JnzInstruction.OP_CODE -> {
+//                String r = scan();
+//                String s = scan();
+//                return new JnzInstruction(label, Register.valueOf(r), s);
+//            }
 
             // TODO: add code for all other types of instructions
 
@@ -119,10 +149,10 @@ public final class Translator {
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
 
-            default -> {
+            /*default -> {
                 System.out.println("Unknown instruction: " + opcode);
             }
-        }
+        }*/
         return null;
     }
 
