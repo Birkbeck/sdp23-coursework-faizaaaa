@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import sml.Instruction;
+import sml.Labels;
 import sml.Machine;
 import sml.Registers;
 
@@ -16,10 +17,14 @@ public class JnzInstructionTest {
     private Machine machine;
     private Registers registers;
 
+    private Labels labels;
+
+
     @BeforeEach
     void setUp() {
         machine = new Machine(new Registers());
         registers = machine.getRegisters();
+        labels = machine.getLabels();
         //...
     }
 
@@ -32,8 +37,9 @@ public class JnzInstructionTest {
     @Test
     void executeValid() {
         registers.set(EAX, 30);
+        labels.addLabel("f3",4);
         Instruction instruction = new JnzInstruction(null, EAX, "f3");
-        Assertions.assertNotEquals(-1, instruction.execute(machine));
+        Assertions.assertEquals(4, instruction.execute(machine));
     }
 
     @Test
