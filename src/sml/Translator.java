@@ -71,36 +71,38 @@ public final class Translator {
         String className = "sml.instruction."+opcode.substring(0,1).toUpperCase() + opcode.substring(1)+ "Instruction";
         try {
             Class<?> instruction = Class.forName(className);
-            Constructor constructor = instruction.getDeclaredConstructor();
-            Class[] parameterTypes = constructor.getParameterTypes();
+            Constructor<?>[] constructor = instruction.getConstructors();
+            Class[] parameterTypes = constructor[0].getParameterTypes();
             if (parameterTypes.length==3) {
-                if(parameterTypes[2].equals(Register.class)) {
+                if(parameterTypes[2].getTypeName().equals("sml.Register")) {
                     String r = scan();
                     String s = scan();
                     return (Instruction)
-                            constructor.newInstance(label,Register.valueOf(r),Register.valueOf(s));
+                            constructor[0].newInstance(label,Register.valueOf(r),Register.valueOf(s));
                 }
-                else if(parameterTypes[2].equals(int.class)) {
+                else if(parameterTypes[2].getTypeName().equals("java.lang.String")) {
+
                     String r = scan();
                     String s = scan();
-                    int input = Integer.parseInt(s);
                     return (Instruction)
-                            constructor.newInstance(label,Register.valueOf(r),input);
+                            constructor[0].newInstance(label,Register.valueOf(r),s);
                 }
                 else {
                     String r = scan();
                     String s = scan();
+                    int input = Integer.parseInt(s);
                     return (Instruction)
-                            constructor.newInstance(label,Register.valueOf(r),s);
+                            constructor[0].newInstance(label,Register.valueOf(r),input);
+
 
                 }
             }
             else {
                 String s = scan();
                 return (Instruction)
-                        constructor.newInstance(label,Register.valueOf(s));
+                        constructor[0].newInstance(label,Register.valueOf(s));
             }
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  InvocationTargetException e) {
             throw new RuntimeException(e);
         }
