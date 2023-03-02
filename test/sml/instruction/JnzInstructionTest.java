@@ -52,7 +52,13 @@ public class JnzInstructionTest {
 
     @Test
     void equalsTest() {
+        JnzInstruction a = new JnzInstruction(null,EAX,"e");
+        JnzInstruction b = new JnzInstruction(null,EAX,"e");
+        Assertions.assertTrue(b.equals(a));
 
+        JnzInstruction c = new JnzInstruction(null,EBP,"f3");
+        JnzInstruction d = new JnzInstruction(null,EAX,"fe");
+        Assertions.assertFalse(c.equals(d));
     }
 
     @Test

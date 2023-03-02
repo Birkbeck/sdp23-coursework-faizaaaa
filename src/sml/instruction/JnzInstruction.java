@@ -31,12 +31,30 @@ public class JnzInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return null;
+        return getLabelString() + getOpcode() + " " + source + " " + labelToJumpTo;
     }
 
     @Override
     public boolean equals(Instruction i) {
-        return false;
+        if(i.getOpcode().equals(this.opcode)) {
+            JnzInstruction b = (JnzInstruction) i;
+
+            if(this.label!=null&&i.getLabel()!=null)
+            {
+
+                return this.label.equals(i.getLabel())
+                        &&this.labelToJumpTo.equals(((JnzInstruction) i).labelToJumpTo)
+                        &&this.source.equals(((JnzInstruction) i).source);
+
+            }
+            else if(this.label==null&&i.getLabel()==null){
+
+                return this.labelToJumpTo.equals(((JnzInstruction) i).labelToJumpTo)
+                        &&this.source.equals(((JnzInstruction) i).source);
+            }
+            return false;
+        }
+        else {return false;}
     }
 
     @Override
