@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.reflect.*;
 
 import static sml.Registers.Register;
+
 
 /**
  * This class ....
@@ -66,6 +68,12 @@ public final class Translator {
             return null;
 
         String opcode = scan();
+        String className = opcode.substring(0,1).toUpperCase() + opcode.substring(1)+ "Instruction";
+        try {
+            Class<?> instruction = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         switch (opcode) {
             case AddInstruction.OP_CODE -> {
                 String r = scan();
