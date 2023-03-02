@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
+// Register class consisting of a HashMap which stores the value held in each register for the sml.
 
 /**
  *
