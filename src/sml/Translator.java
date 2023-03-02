@@ -5,6 +5,7 @@ import sml.instruction.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.lang.reflect.*;
@@ -74,13 +75,14 @@ public final class Translator {
             Constructor<?>[] constructor = instruction.getConstructors();
             Class[] parameterTypes = constructor[0].getParameterTypes();
             if (parameterTypes.length==3) {
-                if(parameterTypes[2].getTypeName().equals("sml.Register")) {
+                String param = parameterTypes[2].toString();
+                if(param.equals("interface sml.RegisterName")) {
                     String r = scan();
                     String s = scan();
                     return (Instruction)
                             constructor[0].newInstance(label,Register.valueOf(r),Register.valueOf(s));
                 }
-                else if(parameterTypes[2].getTypeName().equals("java.lang.String")) {
+                else if(param.equals("class java.lang.String")) {
 
                     String r = scan();
                     String s = scan();
@@ -105,42 +107,42 @@ public final class Translator {
             throw new RuntimeException(e);
         }
 
-//        switch (opcode) {
-//            case AddInstruction.OP_CODE -> {
-//                String r = scan();
-//                String s = scan();
-//                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
-//            }
-//            case SubInstruction.OP_CODE -> {
-//                String r = scan();
-//                String s = scan();
-//                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
-//            }
-//            case MulInstruction.OP_CODE -> {
-//                String r = scan();
-//                String s = scan();
-//                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
-//            }
-//            case DivInstruction.OP_CODE -> {
-//                String r = scan();
-//                String s = scan();
-//                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
-//            }
-//            case OutInstruction.OP_CODE -> {
-//                String s = scan();
-//                return new OutInstruction(label, Register.valueOf(s));
-//            }
-//            case MovInstruction.OP_CODE -> {
-//                String r = scan();
-//                String s = scan();
-//                int input = Integer.parseInt(s);
-//                return new MovInstruction(label, Register.valueOf(r), input);
-//            }
-//            case JnzInstruction.OP_CODE -> {
-//                String r = scan();
-//                String s = scan();
-//                return new JnzInstruction(label, Register.valueOf(r), s);
-//            }
+    /*    switch (opcode) {
+            case AddInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case SubInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case MulInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case DivInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case OutInstruction.OP_CODE -> {
+                String s = scan();
+                return new OutInstruction(label, Register.valueOf(s));
+            }
+            case MovInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                int input = Integer.parseInt(s);
+                return new MovInstruction(label, Register.valueOf(r), input);
+            }
+            case JnzInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new JnzInstruction(label, Register.valueOf(r), s);
+            }*/
 
             // TODO: add code for all other types of instructions
 
@@ -149,11 +151,11 @@ public final class Translator {
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
 
-            /*default -> {
-                System.out.println("Unknown instruction: " + opcode);
-            }
-        }*/
-//        return null;
+//            default -> {
+//                System.out.println("Unknown instruction: " + opcode);
+//            }
+//        }
+//       return null;
     }
 
 
