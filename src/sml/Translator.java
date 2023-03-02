@@ -74,6 +74,7 @@ public final class Translator {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
         switch (opcode) {
             case AddInstruction.OP_CODE -> {
                 String r = scan();
