@@ -35,7 +35,6 @@ public final class Labels {
 		// TODO: Where can NullPointerException be thrown here?
 		//       (Write an explanation.)
 		// Null pointer exceptions can occur when labels are used which don't exist in the labels map.
-		//       Add code to deal with non-existent labels.
 		try {
 			return labels.get(label);
 		}

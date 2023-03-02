@@ -10,8 +10,10 @@ import sml.Labels;
 import sml.Machine;
 import sml.Registers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static sml.Registers.Register.*;
-import static sml.Registers.Register.EBX;
 
 public class JnzInstructionTest {
     private Machine machine;
@@ -22,7 +24,9 @@ public class JnzInstructionTest {
 
     @BeforeEach
     void setUp() {
-        machine = new Machine(new Registers());
+        Labels labels = new Labels();
+        List<Instruction> program = new ArrayList<>();
+        machine = new Machine(labels, program, new Registers());
         registers = machine.getRegisters();
         labels = machine.getLabels();
         //...

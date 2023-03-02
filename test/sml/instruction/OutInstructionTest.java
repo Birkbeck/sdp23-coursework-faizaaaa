@@ -5,15 +5,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sml.Instruction;
+import sml.Labels;
 import sml.Machine;
 import sml.Registers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sml.Registers.Register.*;
-import static sml.Registers.Register.EBX;
 
 public class OutInstructionTest {
     private Machine machine;
@@ -24,7 +26,9 @@ public class OutInstructionTest {
 
     @BeforeEach
     void setUp() {
-        machine = new Machine(new Registers());
+        Labels labels = new Labels();
+        List<Instruction> program = new ArrayList<>();
+        machine = new Machine(labels, program, new Registers());
         registers = machine.getRegisters();
         System.setOut(new PrintStream(outputStreamCaptor));
     }

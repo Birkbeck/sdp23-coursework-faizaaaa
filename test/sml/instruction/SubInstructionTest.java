@@ -6,8 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import sml.Instruction;
+import sml.Labels;
 import sml.Machine;
 import sml.Registers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static sml.Registers.Register.*;
 
@@ -19,7 +23,9 @@ public class SubInstructionTest {
 
     @BeforeEach
     void setUp() {
-        machine = new Machine(new Registers());
+        Labels labels = new Labels();
+        List<Instruction> program = new ArrayList<>();
+        machine = new Machine(labels, program, new Registers());
         registers = machine.getRegisters();
         //...
     }

@@ -1,6 +1,5 @@
 package sml;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,9 +14,9 @@ import static sml.Instruction.NORMAL_PROGRAM_COUNTER_UPDATE;
  */
 public final class Machine {
 
-	private final Labels labels = new Labels();
+	private final Labels labels;
 
-	private final List<Instruction> program = new ArrayList<>();
+	private final List<Instruction> program;
 
 	private final Registers registers;
 
@@ -25,7 +24,9 @@ public final class Machine {
 	// of the next instruction to be executed.
 	private int programCounter = 0;
 
-	public Machine(Registers registers) {
+	public Machine(Labels labels, List<Instruction> program, Registers registers) {
+		this.labels = labels;
+		this.program = program;
 		this.registers = registers;
 	}
 

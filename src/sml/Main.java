@@ -1,6 +1,8 @@
 package sml;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 	/**
@@ -15,8 +17,10 @@ public class Main {
 		}
 
 		try {
+			Labels labels = new Labels();
+			List<Instruction> program = new ArrayList<>();
 			Translator t = new Translator(args[0]);
-			Machine m = new Machine(new Registers());
+			Machine m = new Machine(labels, program, new Registers());
 			t.readAndTranslate(m.getLabels(), m.getProgram());
 
 			System.out.println("Here is the program; it has " + m.getProgram().size() + " instructions.");
