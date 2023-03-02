@@ -20,8 +20,11 @@ public final class Labels {
 	 * @param label the label
 	 * @param address the address the label refers to
 	 */
-	public void addLabel(String label, int address) {
+	public void addLabel(String label, int address) throws Exception {
 		Objects.requireNonNull(label);
+		if(labels.containsKey(label)) {
+			throw new Exception("Cannot have duplicate labels.");
+		}
 		// TODO: Add a check that there are no label duplicates.
 		labels.put(label, address);
 	}
@@ -64,7 +67,7 @@ public final class Labels {
 	// TODO: Implement equals and hashCode (needed in class Machine).
 
 	public boolean equals(){
-
+	return false;
 	}
 	public int hashCode() {
 		return labels.hashCode();
