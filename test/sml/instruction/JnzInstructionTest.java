@@ -39,7 +39,7 @@ public class JnzInstructionTest {
     }
 
     @Test
-    void executeValid() {
+    void executeValid() throws Exception {
         registers.set(EAX, 30);
         labels.addLabel("f3",4);
         Instruction instruction = new JnzInstruction(null, EAX, "f3");

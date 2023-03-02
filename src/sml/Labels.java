@@ -66,8 +66,8 @@ public final class Labels {
 
 	// TODO: Implement equals and hashCode (needed in class Machine).
 
-	public boolean equals(){
-	return false;
+	public boolean equals(Labels l){
+		return l.labels.equals(this.labels);
 	}
 	public int hashCode() {
 		return labels.hashCode();
