@@ -54,13 +54,11 @@ public abstract class Instruction {
 		return (getLabel() == null) ? "" : getLabel() + ": ";
 	}
 
-	// TODO: What does abstract in the declaration below mean?
-	//       (Write a short explanation.)
+
 	// It shows that it is a method that does not have it's implementation.
 	@Override
 	public abstract String toString();
 
-	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
 	public abstract boolean equals(Instruction i);
 	public abstract int hashCode();
 

@@ -6,13 +6,20 @@ import sml.RegisterName;
 
 import java.util.Objects;
 
-// DivInstruction class, to be used with Machine class. Helps interpret the sml instructions for div.
+/**
+ * Represents DivInstruction class, to be used with Machine class. Helps interpret the sml instructions for div.
+ * @author Faizaa Fazal
+ */
 
 public class DivInstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
 
+    /**
+     * Represents the instruction String type the instruction can take.
+     */
     public static final String OP_CODE = "div";
+
     /**
      * Constructor: an instruction with a label and an opcode
      * (opcode must be an operation of the language)
@@ -26,7 +33,13 @@ public class DivInstruction extends Instruction {
         this.result = result;
         this.source = source;
     }
-
+    /**
+     * Executes the division instruction in the given machine.
+     *
+     * @param m the machine the instruction runs on
+     * @return  NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
+     *          the instruction with the next address is to be executed
+     */
     @Override
     public int execute(Machine m) {
         int value1 = m.getRegisters().get(result);
@@ -34,12 +47,16 @@ public class DivInstruction extends Instruction {
         m.getRegisters().set(result, value1 / value2);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
-
+    /**
+     * Returns a string representation of DivInstruction object.
+     */
     @Override
     public String toString() {
         return getLabelString() + getOpcode() + " " + result + " " + source;
     }
-
+    /**
+     * Checks if a different instruction (the parameter) is equal to the current Instruction object.
+     */
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
@@ -63,6 +80,10 @@ public class DivInstruction extends Instruction {
         else {return false;}
     }
 
+    /**
+     * Generates hashcode for DivInstruction.
+     * @return int
+     */
     @Override
     public int hashCode() {
         return Objects.hash(result,source,opcode,label);
