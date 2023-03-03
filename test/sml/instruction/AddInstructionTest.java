@@ -23,7 +23,7 @@ class AddInstructionTest {
   void setUp() {
     Labels labels = new Labels();
     List<Instruction> program = new ArrayList<>();
-    machine = new Machine(labels, program, new Registers());
+    machine = new Machine(labels, program, Registers.getInstance());
     registers = machine.getRegisters();
     //...
   }

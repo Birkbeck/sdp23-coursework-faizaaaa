@@ -12,13 +12,19 @@ import java.util.stream.Collectors;
  */
 public final class Registers {
     private final Map<Register, Integer> registers = new HashMap<>();
+    private static Registers r;
 
     public enum Register implements RegisterName {
         EAX, EBX, ECX, EDX, ESP, EBP, ESI, EDI;
     }
 
-    public Registers() {
+    private Registers() {
         clear(); // the class is final
+    }
+
+    public static Registers getInstance() {
+        if (r==null) {r = new Registers();}
+        return r;
     }
 
     public void clear() {
