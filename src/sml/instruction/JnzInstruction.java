@@ -63,24 +63,23 @@ public class JnzInstruction extends Instruction {
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
-            JnzInstruction b = (JnzInstruction) i;
+            JnzInstruction jnzInstruction = (JnzInstruction) i;
 
-            if(this.label!=null&&i.getLabel()!=null)
+            if(this.label!=null&&jnzInstruction.getLabel()!=null)
             {
 
-                return this.label.equals(i.getLabel())
-                        &&this.labelToJumpTo.equals(((JnzInstruction) i).labelToJumpTo)
-                        &&this.source.equals(((JnzInstruction) i).source);
+                return this.label.equals(jnzInstruction.getLabel())
+                        &&this.labelToJumpTo.equals(jnzInstruction.labelToJumpTo)
+                        &&this.source.equals(jnzInstruction.source);
 
             }
-            else if(this.label==null&&i.getLabel()==null){
+            else if(this.label==null&&jnzInstruction.getLabel()==null){
 
-                return this.labelToJumpTo.equals(((JnzInstruction) i).labelToJumpTo)
-                        &&this.source.equals(((JnzInstruction) i).source);
+                return this.labelToJumpTo.equals(jnzInstruction.labelToJumpTo)
+                        &&this.source.equals(jnzInstruction.source);
             }
-            return false;
         }
-        else {return false;}
+        return false;
     }
     /**
      * Generates hashcode for JnzInstruction.

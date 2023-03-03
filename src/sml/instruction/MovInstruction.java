@@ -57,24 +57,23 @@ public class MovInstruction extends Instruction {
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
-            MovInstruction b = (MovInstruction) i;
+            MovInstruction movInstruction = (MovInstruction) i;
 
-            if(this.label!=null&&i.getLabel()!=null)
+            if(this.label!=null&&movInstruction.getLabel()!=null)
             {
 
-                return this.label.equals(i.getLabel())
-                        &&this.result.equals(((MovInstruction) i).result)
-                        &&this.input==((MovInstruction) i).input;
+                return this.label.equals(movInstruction.getLabel())
+                        &&this.result.equals(movInstruction.result)
+                        &&this.input== movInstruction.input;
 
             }
-            else if(this.label==null&&i.getLabel()==null){
+            else if(this.label==null&&movInstruction.getLabel()==null){
 
-                return this.result.equals(((MovInstruction) i).result)
-                        &&this.input==((MovInstruction) i).input;
+                return this.result.equals(movInstruction.result)
+                        &&this.input== movInstruction.input;
             }
-            return false;
         }
-        else {return false;}
+        return false;
     }
     /**
      * Generates hashcode for MovInstruction.

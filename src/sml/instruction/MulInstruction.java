@@ -58,24 +58,23 @@ public class MulInstruction extends Instruction {
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
-            MulInstruction b = (MulInstruction) i;
+            MulInstruction mulInstruction = (MulInstruction) i;
 
-            if(this.label!=null&&i.getLabel()!=null)
+            if(this.label!=null&&mulInstruction.getLabel()!=null)
             {
 
-                return this.label.equals(i.getLabel())
-                        &&this.result.equals(((MulInstruction) i).result)
-                        &&this.source.equals(((MulInstruction) i).source);
+                return this.label.equals(mulInstruction.getLabel())
+                        &&this.result.equals(mulInstruction.result)
+                        &&this.source.equals(mulInstruction.source);
 
             }
             else if(this.label==null&&i.getLabel()==null){
 
-                return this.result.equals(((MulInstruction) i).result)
-                        &&this.source.equals(((MulInstruction) i).source);
+                return this.result.equals(mulInstruction.result)
+                        &&this.source.equals(mulInstruction.source);
             }
-            return false;
         }
-        else {return false;}
+        return false;
     }
     /**
      * Generates hashcode for MulInstruction.

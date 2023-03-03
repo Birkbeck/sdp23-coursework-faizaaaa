@@ -57,24 +57,23 @@ public class SubInstruction extends Instruction {
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
-            SubInstruction b = (SubInstruction) i;
+            SubInstruction subInstruction = (SubInstruction) i;
 
-            if(this.label!=null&&i.getLabel()!=null)
+            if(this.label!=null&&subInstruction.getLabel()!=null)
             {
 
-                return this.label.equals(i.getLabel())
-                        &&this.result.equals(((SubInstruction) i).result)
-                        &&this.source.equals(((SubInstruction) i).source);
+                return this.label.equals(subInstruction.getLabel())
+                        &&this.result.equals(subInstruction.result)
+                        &&this.source.equals(subInstruction.source);
 
             }
-            else if(this.label==null&&i.getLabel()==null){
+            else if(this.label==null&&subInstruction.getLabel()==null){
 
-                return this.result.equals(((SubInstruction) i).result)
-                        &&this.source.equals(((SubInstruction) i).source);
+                return this.result.equals(subInstruction.result)
+                        &&this.source.equals(subInstruction.source);
             }
-            return false;
         }
-        else {return false;}
+        return false;
     }
     /**
      * Generates hashcode for OutInstruction.

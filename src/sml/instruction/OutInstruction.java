@@ -54,22 +54,21 @@ public class OutInstruction extends Instruction {
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
-            OutInstruction b = (OutInstruction) i;
+            OutInstruction outInstruction = (OutInstruction) i;
 
-            if(this.label!=null&&i.getLabel()!=null)
+            if(this.label!=null&&outInstruction.getLabel()!=null)
             {
 
-                return this.label.equals(i.getLabel())
-                        &&this.source.equals(((OutInstruction) i).source);
+                return this.label.equals(outInstruction.getLabel())
+                        &&this.source.equals(outInstruction.source);
 
             }
-            else if(this.label==null&&i.getLabel()==null){
+            else if(this.label==null&&outInstruction.getLabel()==null){
 
-                return this.source.equals(((OutInstruction) i).source);
+                return this.source.equals(outInstruction.source);
             }
-            return false;
         }
-        else {return false;}
+        return false;
     }
     /**
      * Generates hashcode for OutInstruction.

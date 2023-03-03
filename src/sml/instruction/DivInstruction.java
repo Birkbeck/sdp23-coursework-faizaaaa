@@ -60,24 +60,23 @@ public class DivInstruction extends Instruction {
     @Override
     public boolean equals(Instruction i) {
         if(i.getOpcode().equals(this.opcode)) {
-            DivInstruction b = (DivInstruction) i;
+            DivInstruction divInstruction = (DivInstruction) i;
 
-            if(this.label!=null&&i.getLabel()!=null)
+            if(this.label!=null&&divInstruction.getLabel()!=null)
             {
 
-                return this.label.equals(i.getLabel())
-                        &&this.result.equals(((DivInstruction) i).result)
-                        &&this.source.equals(((DivInstruction) i).source);
+                return this.label.equals(divInstruction.getLabel())
+                        &&this.result.equals(divInstruction.result)
+                        &&this.source.equals(divInstruction.source);
 
             }
-            else if(this.label==null&&i.getLabel()==null){
+            else if(this.label==null&&divInstruction.getLabel()==null){
 
-                return this.result.equals(((DivInstruction) i).result)
-                        &&this.source.equals(((DivInstruction) i).source);
+                return this.result.equals(divInstruction.result)
+                        &&this.source.equals(divInstruction.source);
             }
-            return false;
         }
-        else {return false;}
+        return false;
     }
 
     /**

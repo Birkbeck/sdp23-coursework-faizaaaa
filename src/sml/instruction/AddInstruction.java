@@ -68,24 +68,23 @@ public class AddInstruction extends Instruction {
 	@Override
 	public boolean equals(Instruction i) {
 		if(i.getOpcode().equals(this.opcode)) {
-			AddInstruction b = (AddInstruction) i;
+			AddInstruction addInstruction = (AddInstruction) i;
 
-			if(this.label!=null&&i.getLabel()!=null)
+			if(this.label!=null&&addInstruction.getLabel()!=null)
 			{
 
-				return this.label.equals(i.getLabel())
-						&&this.result.equals(((AddInstruction) i).result)
-						&&this.source.equals(((AddInstruction) i).source);
+				return this.label.equals(addInstruction.getLabel())
+						&&this.result.equals(addInstruction.result)
+						&&this.source.equals(addInstruction.source);
 
 			}
-			else if(this.label==null&&i.getLabel()==null){
+			else if(this.label==null&&addInstruction.getLabel()==null){
 
-					return this.result.equals(((AddInstruction) i).result)
-							&&this.source.equals(((AddInstruction) i).source);
+					return this.result.equals(addInstruction.result)
+							&&this.source.equals(addInstruction.source);
 				}
-			return false;
-			}
-		else {return false;}
+		}
+		return false;
 	}
 
 	/**
