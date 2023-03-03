@@ -3,17 +3,20 @@ package sml;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// TODO: write a JavaDoc for the class
-// Register class consisting of a HashMap which stores the value held in each register for the sml.
+
 
 /**
+ * Register class consisting of a HashMap which stores the value held in each register for the sml.
  *
- * @author ...
+ * @author Faizaa Fazal and Lecturer
  */
 public final class Registers {
     private final Map<Register, Integer> registers = new HashMap<>();
     private static Registers r;
 
+    /**
+     * Enum representing register names available to be used in the Machine.
+     */
     public enum Register implements RegisterName {
         EAX, EBX, ECX, EDX, ESP, EBP, ESI, EDI
     }
@@ -22,6 +25,12 @@ public final class Registers {
         clear(); // the class is final
     }
 
+    /**
+     * Returns the instance of registers. Only one instance of registers is allowed in this program as there is
+     * usually only one set of registers in a machine.
+     * Applied singleton pattern here.
+     * @return Register instance
+     */
     public static Registers getInstance() {
         if (r==null) {r = new Registers();}
         return r;
@@ -52,8 +61,12 @@ public final class Registers {
         return registers.get((Register)register);
     }
 
-    // TODO: use pattern matching for instanceof
-    // https://docs.oracle.com/en/java/javase/14/language/pattern-matching-instanceof-operator.html
+    /**
+     * Checks to see if object o is equal to the register instance.
+     *
+     * @param o object compared with instance of Registers
+     * @return boolean true or false.
+     */
     @Override
     public boolean equals(Object o) {
         if (o instanceof Registers other) {

@@ -45,15 +45,21 @@ public final class Machine {
 				: programCounterUpdate;
 		}
 	}
-
+	/**
+	 * Returns the Labels.
+	 */
 	public Labels getLabels() {
 		return this.labels;
 	}
-
+	/**
+	 * Returns the program as a List of Instruction objects.
+	 */
 	public List<Instruction> getProgram() {
 		return this.program;
 	}
-
+	/**
+	 * Returns the registers.
+	 */
 	public Registers getRegisters() {
 		return this.registers;
 	}

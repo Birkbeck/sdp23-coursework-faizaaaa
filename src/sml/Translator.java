@@ -14,11 +14,11 @@ import static sml.Registers.Register;
 
 
 /**
- * This class ....
+ * This class takes in a file and translates that file containing SML instructions.
  * <p>
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  *
- * @author ...
+ * @author Faizaa Fazal and Lecturer
  */
 public final class Translator {
 
@@ -27,6 +27,10 @@ public final class Translator {
     // line contains the characters in the current line that's not been processed yet
     private String line = "";
 
+    /**
+     * Takes in file
+     * @param fileName file containing SML instructions
+     */
     public Translator(String fileName) {
         this.fileName =  fileName;
     }
@@ -35,6 +39,12 @@ public final class Translator {
     // prog (the program)
     // return "no errors were detected"
 
+    /**
+     *
+     * @param labels labels map containing all the labels and the instruction positions at which they occur
+     * @param program contains list of instructions present in program
+     * @throws Exception
+     */
     public void readAndTranslate(Labels labels, List<Instruction> program) throws Exception {
         try (var sc = new Scanner(new File(fileName), StandardCharsets.UTF_8)) {
             labels.reset();
@@ -108,14 +118,6 @@ public final class Translator {
         }
 
 
-            // TODO: add code for all other types of instructions
-
-            // TODO: Then, replace the switch by using the Reflection API
-
-            // TODO: Next, use dependency injection to allow this machine class
-            //       to work with different sets of opcodes (different CPUs)
-
-
     }
 
 
@@ -129,7 +131,7 @@ public final class Translator {
         return null;
     }
 
-    /*
+    /**
      * Return the first word of line and remove it from line.
      * If there is no word, return "".
      */
