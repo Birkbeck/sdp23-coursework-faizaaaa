@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public final class Registers {
     private final Map<Register, Integer> registers = new HashMap<>();
-    private static Registers r;
+    private static Registers registerObject;
 
     /**
      * Enum representing register names available to be used in the Machine.
@@ -32,8 +32,9 @@ public final class Registers {
      * @return Register instance
      */
     public static Registers getInstance() {
-        if (r==null) {r = new Registers();}
-        return r;
+        if (registerObject ==null) {
+            registerObject = new Registers();}
+        return registerObject;
     }
 
     public void clear() {
