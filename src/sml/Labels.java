@@ -67,10 +67,16 @@ public final class Labels {
 	}
 
 	// TODO: Implement equals and hashCode (needed in class Machine).
+	/**
+	 * Checks if Labels parameter is equal to the current instance of Labels.
+	 */
 
 	public boolean equals(Labels l){
 		return l.labels.equals(this.labels);
 	}
+	/**
+	 * Returns the hashcode of labels object.
+ 	 */
 	public int hashCode() {
 		return labels.hashCode();
 	}
