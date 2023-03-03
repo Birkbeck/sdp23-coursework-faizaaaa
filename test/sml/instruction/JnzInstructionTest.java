@@ -23,13 +23,12 @@ public class JnzInstructionTest {
 
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         Labels labels = new Labels();
+        labels.addLabel("f3",4);
         List<Instruction> program = new ArrayList<>();
         machine = new Machine(labels, program, Registers.getInstance());
         registers = machine.getRegisters();
-        labels = machine.getLabels();
-        //...
     }
 
     @AfterEach
@@ -41,7 +40,6 @@ public class JnzInstructionTest {
     @Test
     void executeValid() throws Exception {
         registers.set(EAX, 30);
-        labels.addLabel("f3",4);
         Instruction instruction = new JnzInstruction(null, EAX, "f3");
         Assertions.assertEquals(4, instruction.execute(machine));
     }
