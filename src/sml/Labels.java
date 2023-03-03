@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
 
-
-
 /**Labels class which consists of HashMap containing any labels that occur along with
  * the instruction number it would occur at. Used to update program counter
  * in the SML interpreter when jnz instruction is executed.
@@ -64,7 +62,7 @@ public final class Labels {
 		// TODO: Implement the method using the Stream API (see also class Registers).
 		return labels.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey())
-				.map(e -> e.getKey() + " = " + e.getValue())
+				.map(e -> e.getKey() + " -> " + e.getValue())
 				.collect(Collectors.joining(", ", "[", "]")) ;
 	}
 
