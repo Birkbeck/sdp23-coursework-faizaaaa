@@ -10,92 +10,95 @@ import static sml.Instruction.NORMAL_PROGRAM_COUNTER_UPDATE;
  * Represents the machine, the context in which programs run.
  * <p>
  * An instance contains 32 registers and methods to access and change them.
- *
  */
 public final class Machine {
 
-	private final Labels labels;
+    private final Labels labels;
 
-	private final List<Instruction> program;
+    private final List<Instruction> program;
 
-	private final Registers registers;
+    private final Registers registers;
 
-	// The program counter; it contains the index (in program)
-	// of the next instruction to be executed.
-	private int programCounter = 0;
+    // The program counter; it contains the index (in program)
+    // of the next instruction to be executed.
+    private int programCounter = 0;
 
-	public Machine(Labels labels, List<Instruction> program, Registers registers) {
-		this.labels = labels;
-		this.program = program;
-		this.registers = registers;
-	}
+    public Machine(Labels labels, List<Instruction> program, Registers registers) {
+        this.labels = labels;
+        this.program = program;
+        this.registers = registers;
+    }
 
-	/**
-	 * Execute the program in program, beginning at instruction 0.
-	 * Precondition: the program and its labels have been stored properly.
-	 */
-	public void execute() {
-		programCounter = 0;
-		registers.clear();
-		while (programCounter < program.size()) {
-			Instruction ins = program.get(programCounter);
-			int programCounterUpdate = ins.execute(this);
-			programCounter = (programCounterUpdate == NORMAL_PROGRAM_COUNTER_UPDATE)
-				? programCounter + 1
-				: programCounterUpdate;
-		}
-	}
-	/**
-	 * Returns the Labels.
-	 */
-	public Labels getLabels() {
-		return this.labels;
-	}
-	/**
-	 * Returns the program as a List of Instruction objects.
-	 */
-	public List<Instruction> getProgram() {
-		return this.program;
-	}
-	/**
-	 * Returns the registers.
-	 */
-	public Registers getRegisters() {
-		return this.registers;
-	}
+    /**
+     * Execute the program in program, beginning at instruction 0.
+     * Precondition: the program and its labels have been stored properly.
+     */
+    public void execute() {
+        programCounter = 0;
+        registers.clear();
+        while (programCounter < program.size()) {
+            Instruction ins = program.get(programCounter);
+            int programCounterUpdate = ins.execute(this);
+            programCounter = (programCounterUpdate == NORMAL_PROGRAM_COUNTER_UPDATE)
+                    ? programCounter + 1
+                    : programCounterUpdate;
+        }
+    }
+
+    /**
+     * Returns the Labels.
+     */
+    public Labels getLabels() {
+        return this.labels;
+    }
+
+    /**
+     * Returns the program as a List of Instruction objects.
+     */
+    public List<Instruction> getProgram() {
+        return this.program;
+    }
+
+    /**
+     * Returns the registers.
+     */
+    public Registers getRegisters() {
+        return this.registers;
+    }
 
 
-	/**
-	 * String representation of the program under execution.
-	 *
-	 * @return pretty formatted version of the code.
-	 */
-	@Override
-	public String toString() {
-		return program.stream()
-				.map(Instruction::toString)
-				.collect(Collectors.joining("\n"));
-	}
+    /**
+     * String representation of the program under execution.
+     *
+     * @return pretty formatted version of the code.
+     */
+    @Override
+    public String toString() {
+        return program.stream()
+                .map(Instruction::toString)
+                .collect(Collectors.joining("\n"));
+    }
 
-	/**
-	 * Checks if object is equal to Machine.
-	 */
+    /**
+     * Checks if object is equal to Machine.
+     */
 
-	@Override
-	public boolean equals(Object o) {
-		if (o instanceof Machine other) {
-			return Objects.equals(this.labels, other.labels)
-					&& Objects.equals(this.program, other.program)
-					&& Objects.equals(this.registers, other.registers)
-					&& this.programCounter == other.programCounter;
-		}
-		return false;
-	}
-	/**
-	 * Returns the hashcode of Machine object.
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hash(labels, program, registers, programCounter);
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Machine other) {
+            return Objects.equals(this.labels, other.labels)
+                    && Objects.equals(this.program, other.program)
+                    && Objects.equals(this.registers, other.registers)
+                    && this.programCounter == other.programCounter;
+        }
+        return false;
+    }
+
+    /**
+     * Returns the hashcode of Machine object.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(labels, program, registers, programCounter);
+    }
 }

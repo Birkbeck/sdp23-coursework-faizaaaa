@@ -1,8 +1,8 @@
 package sml;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
-
 
 
 /**
@@ -29,11 +29,13 @@ public final class Registers {
      * Returns the instance of registers. Only one instance of registers is allowed in this program as there is
      * usually only one set of registers in a machine.
      * Applied singleton pattern here.
+     *
      * @return Register instance
      */
     public static Registers getInstance() {
-        if (registerObject ==null) {
-            registerObject = new Registers();}
+        if (registerObject == null) {
+            registerObject = new Registers();
+        }
         return registerObject;
     }
 
@@ -46,10 +48,10 @@ public final class Registers {
      * Sets the given register to the value.
      *
      * @param register register name
-     * @param value new value
+     * @param value    new value
      */
     public void set(RegisterName register, int value) {
-        registers.put((Register)register, value);
+        registers.put((Register) register, value);
     }
 
     /**
@@ -59,7 +61,7 @@ public final class Registers {
      * @return value
      */
     public int get(RegisterName register) {
-        return registers.get((Register)register);
+        return registers.get((Register) register);
     }
 
     /**
@@ -86,6 +88,6 @@ public final class Registers {
         return registers.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(e -> e.getKey() + " = " + e.getValue())
-                .collect(Collectors.joining(", ", "[", "]")) ;
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 }

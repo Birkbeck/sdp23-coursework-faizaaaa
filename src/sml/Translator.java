@@ -1,14 +1,11 @@
 package sml;
 
-import sml.instruction.*;
-
 import java.io.File;
-import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.lang.reflect.*;
 
 import static sml.Registers.Register;
 
@@ -29,10 +26,11 @@ public final class Translator {
 
     /**
      * Takes in file
+     *
      * @param fileName file containing SML instructions
      */
     public Translator(String fileName) {
-        this.fileName =  fileName;
+        this.fileName = fileName;
     }
 
     // translate the small program in the file into lab (the labels) and
@@ -40,8 +38,7 @@ public final class Translator {
     // return "no errors were detected"
 
     /**
-     *
-     * @param labels labels map containing all the labels and the instruction positions at which they occur
+     * @param labels  labels map containing all the labels and the instruction positions at which they occur
      * @param program contains list of instructions present in program
      * @throws Exception
      */
@@ -78,39 +75,38 @@ public final class Translator {
         if (line.isEmpty())
             return null;
 
+        //loads class retrieves constructor
         String opcode = scan();
-        String className = "sml.instruction."+opcode.substring(0,1).toUpperCase() + opcode.substring(1)+ "Instruction";
+        String className = "sml.instruction." + opcode.substring(0, 1).toUpperCase() + opcode.substring(1) + "Instruction";
         try {
             Class<?> instruction = Class.forName(className);
             Constructor<?>[] constructor = instruction.getConstructors();
             Class[] parameterTypes = constructor[0].getParameterTypes();
-            if (parameterTypes.length==3) {
+            // checking parameter type needed to instantiate instruction
+            if (parameterTypes.length == 3) {
                 String param = parameterTypes[2].toString();
-                if(param.equals("interface sml.RegisterName")) {
+                if (param.equals("interface sml.RegisterName")) {
                     String r = scan();
                     String s = scan();
                     return (Instruction)
-                            constructor[0].newInstance(label,Register.valueOf(r),Register.valueOf(s));
-                }
-                else if(param.equals("class java.lang.String")) {
+                            constructor[0].newInstance(label, Register.valueOf(r), Register.valueOf(s));
+                } else if (param.equals("class java.lang.String")) {
 
                     String r = scan();
                     String s = scan();
                     return (Instruction)
-                            constructor[0].newInstance(label,Register.valueOf(r),s);
-                }
-                else {
+                            constructor[0].newInstance(label, Register.valueOf(r), s);
+                } else {
                     String r = scan();
                     String s = scan();
                     int input = Integer.parseInt(s);
                     return (Instruction)
-                            constructor[0].newInstance(label,Register.valueOf(r),input);
+                            constructor[0].newInstance(label, Register.valueOf(r), input);
                 }
-            }
-            else {
+            } else {
                 String s = scan();
                 return (Instruction)
-                        constructor[0].newInstance(label,Register.valueOf(s));
+                        constructor[0].newInstance(label, Register.valueOf(s));
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  InvocationTargetException e) {

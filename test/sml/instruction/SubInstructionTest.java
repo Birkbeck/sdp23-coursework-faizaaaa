@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import sml.Instruction;
 import sml.Labels;
 import sml.Machine;
@@ -37,7 +36,7 @@ public class SubInstructionTest {
     }
 
     @Test
-    void executeValid() {
+    void testExecuteValid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
         Instruction instruction = new SubInstruction(null, EAX, EBX);
@@ -46,7 +45,7 @@ public class SubInstructionTest {
     }
 
     @Test
-    void executeValidTwo() {
+    void testExecuteValidTwo() {
         registers.set(EAX, -5);
         registers.set(EBX, 6);
         Instruction instruction = new SubInstruction(null, EAX, EBX);
@@ -55,21 +54,21 @@ public class SubInstructionTest {
     }
 
     @Test
-    void equalsTest() {
-        SubInstruction a = new SubInstruction(null,EAX,EBX);
-        SubInstruction b = new SubInstruction(null,EAX,EBX);
+    void testEqualsTest() {
+        SubInstruction a = new SubInstruction(null, EAX, EBX);
+        SubInstruction b = new SubInstruction(null, EAX, EBX);
         Assertions.assertTrue(b.equals(a));
 
-        SubInstruction c = new SubInstruction(null,EBP,EBX);
-        SubInstruction d = new SubInstruction(null,EAX,EBX);
+        SubInstruction c = new SubInstruction(null, EBP, EBX);
+        SubInstruction d = new SubInstruction(null, EAX, EBX);
         Assertions.assertFalse(c.equals(d));
     }
 
     @Test
-    void hashcodeTest() {
-        SubInstruction a = new SubInstruction(null,EAX,EBX);
-        SubInstruction b = new SubInstruction(null,EAX,EBX);
-        Assertions.assertEquals(a.hashCode(),b.hashCode());
+    void testHashcodeTest() {
+        SubInstruction a = new SubInstruction(null, EAX, EBX);
+        SubInstruction b = new SubInstruction(null, EAX, EBX);
+        Assertions.assertEquals(a.hashCode(), b.hashCode());
 
     }
 }

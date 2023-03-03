@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Represents MulInstruction class, to be used with Machine class. Helps interpret the sml instructions for mul.
+ *
  * @author Faizaa Fazal
  */
 public class MulInstruction extends Instruction {
@@ -18,6 +19,7 @@ public class MulInstruction extends Instruction {
      * Represents the instruction String type the instruction can take.
      */
     public static final String OP_CODE = "mul";
+
     /**
      * Constructor: an instruction with a label and an opcode
      * (opcode must be an operation of the language)
@@ -31,12 +33,13 @@ public class MulInstruction extends Instruction {
         this.result = result;
         this.source = source;
     }
+
     /**
      * Executes the multiply instruction in the given machine.
      *
      * @param m the machine the instruction runs on
-     * @return  NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
-     *          the instruction with the next address is to be executed
+     * @return NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
+     * the instruction with the next address is to be executed
      */
     @Override
     public int execute(Machine m) {
@@ -45,6 +48,7 @@ public class MulInstruction extends Instruction {
         m.getRegisters().set(result, value1 * value2);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
+
     /**
      * Returns a string representation of MulInstruction object.
      */
@@ -52,36 +56,37 @@ public class MulInstruction extends Instruction {
     public String toString() {
         return getLabelString() + getOpcode() + " " + result + " " + source;
     }
+
     /**
      * Checks if a different instruction (the parameter) is equal to the current Instruction object.
      */
     @Override
     public boolean equals(Instruction i) {
-        if(i.getOpcode().equals(this.opcode)) {
+        if (i.getOpcode().equals(this.opcode)) {
             MulInstruction mulInstruction = (MulInstruction) i;
 
-            if(this.label!=null&&mulInstruction.getLabel()!=null)
-            {
+            if (this.label != null && mulInstruction.getLabel() != null) {
 
                 return this.label.equals(mulInstruction.getLabel())
-                        &&this.result.equals(mulInstruction.result)
-                        &&this.source.equals(mulInstruction.source);
+                        && this.result.equals(mulInstruction.result)
+                        && this.source.equals(mulInstruction.source);
 
-            }
-            else if(this.label==null&&i.getLabel()==null){
+            } else if (this.label == null && i.getLabel() == null) {
 
                 return this.result.equals(mulInstruction.result)
-                        &&this.source.equals(mulInstruction.source);
+                        && this.source.equals(mulInstruction.source);
             }
         }
         return false;
     }
+
     /**
      * Generates hashcode for MulInstruction.
+     *
      * @return int
      */
     @Override
     public int hashCode() {
-        return Objects.hash(result,source,opcode,label);
+        return Objects.hash(result, source, opcode, label);
     }
 }

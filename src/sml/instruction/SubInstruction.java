@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Represents SubInstruction class, to be used with Machine class. Helps interpret the sml instructions for sub.
+ *
  * @author Faizaa Fazal
  */
 public class SubInstruction extends Instruction {
@@ -17,6 +18,7 @@ public class SubInstruction extends Instruction {
      * Represents the instruction String type the instruction can take.
      */
     public static final String OP_CODE = "sub";
+
     /**
      * Constructor: an instruction with a label and an opcode
      * (opcode must be an operation of the language)
@@ -30,12 +32,13 @@ public class SubInstruction extends Instruction {
         this.result = result;
         this.source = source;
     }
+
     /**
      * Executes the sub instruction in the given machine.
      *
      * @param m the machine the instruction runs on
-     * @return  NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
-     *          the instruction with the next address is to be executed
+     * @return NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
+     * the instruction with the next address is to be executed
      */
     @Override
     public int execute(Machine m) {
@@ -44,6 +47,7 @@ public class SubInstruction extends Instruction {
         m.getRegisters().set(result, value1 - value2);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
+
     /**
      * Returns a string representation of SubInstruction object.
      */
@@ -51,36 +55,37 @@ public class SubInstruction extends Instruction {
     public String toString() {
         return getLabelString() + getOpcode() + " " + result + " " + source;
     }
+
     /**
      * Checks if a different instruction (the parameter) is equal to the current Instruction object.
      */
     @Override
     public boolean equals(Instruction i) {
-        if(i.getOpcode().equals(this.opcode)) {
+        if (i.getOpcode().equals(this.opcode)) {
             SubInstruction subInstruction = (SubInstruction) i;
 
-            if(this.label!=null&&subInstruction.getLabel()!=null)
-            {
+            if (this.label != null && subInstruction.getLabel() != null) {
 
                 return this.label.equals(subInstruction.getLabel())
-                        &&this.result.equals(subInstruction.result)
-                        &&this.source.equals(subInstruction.source);
+                        && this.result.equals(subInstruction.result)
+                        && this.source.equals(subInstruction.source);
 
-            }
-            else if(this.label==null&&subInstruction.getLabel()==null){
+            } else if (this.label == null && subInstruction.getLabel() == null) {
 
                 return this.result.equals(subInstruction.result)
-                        &&this.source.equals(subInstruction.source);
+                        && this.source.equals(subInstruction.source);
             }
         }
         return false;
     }
+
     /**
      * Generates hashcode for OutInstruction.
+     *
      * @return int
      */
     @Override
     public int hashCode() {
-        return Objects.hash(result,source,opcode,label);
+        return Objects.hash(result, source, opcode, label);
     }
 }

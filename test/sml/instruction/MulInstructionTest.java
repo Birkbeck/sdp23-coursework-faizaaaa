@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import sml.Instruction;
 import sml.Labels;
 import sml.Machine;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static sml.Registers.Register.*;
+
 public class MulInstructionTest {
 
     private Machine machine;
@@ -35,7 +35,7 @@ public class MulInstructionTest {
     }
 
     @Test
-    void executeValid() {
+    void testExecuteValid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
         Instruction instruction = new MulInstruction(null, EAX, EBX);
@@ -44,7 +44,7 @@ public class MulInstructionTest {
     }
 
     @Test
-    void executeValidTwo() {
+    void testExecuteValidTwo() {
         registers.set(EAX, -5);
         registers.set(EBX, 6);
         Instruction instruction = new MulInstruction(null, EAX, EBX);
@@ -53,21 +53,21 @@ public class MulInstructionTest {
     }
 
     @Test
-    void equalsTest() {
-        MulInstruction a = new MulInstruction(null,EAX,EBX);
-        MulInstruction b = new MulInstruction(null,EAX,EBX);
+    void testEqualsTest() {
+        MulInstruction a = new MulInstruction(null, EAX, EBX);
+        MulInstruction b = new MulInstruction(null, EAX, EBX);
         Assertions.assertTrue(b.equals(a));
 
-        MulInstruction c = new MulInstruction(null,EBP,EBX);
-        MulInstruction d = new MulInstruction(null,EAX,EBX);
+        MulInstruction c = new MulInstruction(null, EBP, EBX);
+        MulInstruction d = new MulInstruction(null, EAX, EBX);
         Assertions.assertFalse(c.equals(d));
     }
 
     @Test
-    void hashcodeTest() {
-        MulInstruction a = new MulInstruction(null,EAX,EBX);
-        MulInstruction b = new MulInstruction(null,EAX,EBX);
-        Assertions.assertEquals(a.hashCode(),b.hashCode());
+    void testHashcodeTest() {
+        MulInstruction a = new MulInstruction(null, EAX, EBX);
+        MulInstruction b = new MulInstruction(null, EAX, EBX);
+        Assertions.assertEquals(a.hashCode(), b.hashCode());
 
     }
 }
