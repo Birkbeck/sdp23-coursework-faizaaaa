@@ -85,7 +85,9 @@ public final class Machine {
 		}
 		return false;
 	}
-
+	/**
+	 * Returns the hashcode of Machine object.
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(labels, program, registers, programCounter);
